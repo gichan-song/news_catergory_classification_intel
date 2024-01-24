@@ -23,7 +23,7 @@ category = ['Politics','Economic','Social','Culture','World','IT']
 #     titles.append(re.compile('[^가-힣|a-z|A-Z]').sub(' ', title_tag.text))
 # print(titles)
 
-df_title = pd.DataFrame()
+df_titles = pd.DataFrame()
 re_title = re.compile('[^가-힣|a-z|A-Z]')
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
 
@@ -37,8 +37,8 @@ for i in range(6):
         titles.append(re_title.sub(' ',title_tag.text))
     df_section_titles = pd.DataFrame(titles, columns=['titles'])
     df_section_titles['category'] = category[i]
-    df_title = pd.concat([df_title, df_section_titles],axis = 'rows', ignore_index= True)
-    print(df_title.head())
-    df_title.info()
-    print(df_title['category'].value_counts())
-    df_title.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(datetime.datetime.now().strftime('%Y%m%d')),index=False)
+    df_titles = pd.concat([df_titles, df_section_titles],axis = 'rows', ignore_index= True)
+    print(df_titles.head())
+    df_titles.info()
+    print(df_titles['category'].value_counts())
+    df_titles.to_csv('./crawling_data/naver_headline_news_{}.csv'.format(datetime.datetime.now().strftime('%Y%m%d')),index=False)
